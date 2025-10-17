@@ -1,15 +1,12 @@
 from turtleplotlib import Turtle
 import matplotlib.pyplot as plt
 
-
-
 """
 Snowflake function gotten from the course jupyter notebook: INF201_H25_D1_Intro.ipynb
 
 Edited snowflake function to include size.
 
 """
-
 
 def snowflake(turtle, depth, size):
     if depth == 0:
