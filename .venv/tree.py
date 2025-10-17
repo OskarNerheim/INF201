@@ -1,3 +1,9 @@
+"""
+Task by:
+Oskar Nerheim
+Lasse Lindholm
+"""
+
 from turtleplotlib import Turtle
 import matplotlib.pyplot as plt
 
