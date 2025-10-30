@@ -37,7 +37,17 @@ class Rectangle:
 
 class Triangle:
     def __init__(self, corner_1, corner_2, corner_3):
-        pass
+        assert isinstance(corner_1, tuple), "corner 1 must be a tuple"
+        assert isinstance(corner_1, tuple), "corner 2 must be a tuple"
+        assert isinstance(corner_1, tuple), "corner 3 must be a tuple"
+
+        assert len(corner_1) == 2, "corner 1 tuple should contain 2 elements"
+        assert len(corner_2) == 2, "corner 2 tuple should contain 2 elements"
+        assert len(corner_3) == 2, "corner 3 tuple should contain 2 elements"
+
+        self._corner1 = corner_1
+        self._corner2 = corner_2
+        self._corner3 = corner_3
 
 if __name__ == "__main__":
     
