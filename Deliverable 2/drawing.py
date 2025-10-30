@@ -1,6 +1,6 @@
 from turtleplotlib import Turtle
 import matplotlib.pyplot as plt
-
+import math
 
 class Rectangle:
     """
@@ -12,29 +12,32 @@ class Rectangle:
         assert len(lower_left) == 2, "lower_left must contain exactly 2 elements"
         assert len(upper_right) == 2, "upper_right must contain exactly 2 elements"
         
-        self.lower_left = lower_left
-        self.upper_right = upper_right
-        self.width = upper_right[0] - lower_left[0]
-        self.height = upper_right[1] - lower_left[1]
+        self._lower_left = lower_left
+        self._upper_right = upper_right
+        self._width = upper_right[0] - lower_left[0]
+        self._height = upper_right[1] - lower_left[1]
 
     def info(self):
-        print(f"Upper right: {self.upper_right}, Lower Left: {self.lower_left}")
+        print(f"Upper right: {self._upper_right}, Lower Left: {self._lower_left}")
         
     def area(self):
-        return self.width * self.height
+        return self._width * self._height
 
     def draw(self):
         #move to lower left corner and draw the rectangle
         t.up()
-        t.x, t.y = self.lower_left
+        t.x, t.y = self._lower_left
         t.down()
         for i in range(2):
-            t.forward(self.width)
+            t.forward(self._width)
             t.left(90)
-            t.forward(self.height)
+            t.forward(self._height)
             t.left(90)
 
 
+class Triangle:
+    def __init__(self, corner_1, corner_2, corner_3):
+        pass
 
 if __name__ == "__main__":
     
