@@ -90,11 +90,45 @@ class Triangle:
         t.setheading(angle31)
         t.forward(self._length3)
 
+class Circle:
+    def __init__(self, center= (0,0), radius = 1):
+        assert isinstance(center, tuple), "center must be a tuple"
+        assert len(center) == 2, "center must contain exactly 2 elements"
+        assert radius > 0, "radius must be strictley positive"
+
+        self._center = center
+        self._x = center[0]
+        self._y = center[1]
+        self._radius = radius
+        self._diameter = self._radius*2
+        self._sides = 360
+        self._angle_in_poligon = (self._sides - 2)/self._sides
+        self._side_length = 2 * self._radius * math.sin(math.pi/self._sides)
+    
+    def info(self):
+        print(f"Center: {self._center}, radius: {self._radius}")
+
+    def area(self):
+        return math.pi * self._radius**2
+    
+    def draw(self):
+        t.up()
+        t.goto(self._center)
+        t.setheading(0)
+        t.forward(self._radius)
+        t.down()
+        t.right(90)
+        for i in range(self._sides):
+            t.right(self._angle_in_poligon)
+            t.forward(self._side_length)
+            
+
+
 if __name__ == "__main__":
     
     t = Turtle(interactive=False)
 
-    shapes = [Rectangle((10, 10), (20,20)), Rectangle((10,20), (20,30)), Rectangle((20, 40), (30, 50))]
+    shapes = [Rectangle((10, 10), (20,20)), Rectangle((10,20), (20,30)), Rectangle((20, 40), (30, 50)), Circle(radius=10)]
     shapes.append(Triangle((0, 0), (25, 25), (12, 0)))
     for shape in shapes:    
         shape.info()
