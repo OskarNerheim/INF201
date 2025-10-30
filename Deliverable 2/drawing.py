@@ -6,12 +6,13 @@ class Rectangle:
     """
     Original Rectangle class fetched from jupyter notebook for week 8 in the INF201 canvas room.
     """
-    def __init__(self, lower_left, upper_right):
+    def __init__(self, lower_left, upper_right, color = "blue"):
         assert isinstance(lower_left, tuple), "lower_left must be a tuple"
         assert isinstance(upper_right, tuple), "upper_right must be a tuple"
         assert len(lower_left) == 2, "lower_left must contain exactly 2 elements"
         assert len(upper_right) == 2, "upper_right must contain exactly 2 elements"
         
+        self._color = color
         self._lower_left = lower_left
         self._upper_right = upper_right
         self._width = upper_right[0] - lower_left[0]
@@ -25,6 +26,7 @@ class Rectangle:
 
     def draw(self):
         #move to lower left corner and draw the rectangle
+        t.color(self._color)
         t.up()
         t.x, t.y = self._lower_left
         t.down()
@@ -36,7 +38,7 @@ class Rectangle:
 
 
 class Triangle:
-    def __init__(self, corner_1, corner_2, corner_3):
+    def __init__(self, corner_1, corner_2, corner_3, color = "blue"):
         assert isinstance(corner_1, tuple), "corner 1 must be a tuple"
         assert isinstance(corner_1, tuple), "corner 2 must be a tuple"
         assert isinstance(corner_1, tuple), "corner 3 must be a tuple"
@@ -44,7 +46,8 @@ class Triangle:
         assert len(corner_1) == 2, "corner 1 tuple should contain 2 elements"
         assert len(corner_2) == 2, "corner 2 tuple should contain 2 elements"
         assert len(corner_3) == 2, "corner 3 tuple should contain 2 elements"
-
+        
+        self._color = color
         self._corner1 = corner_1
         self._corner2 = corner_2
         self._corner3 = corner_3
@@ -71,11 +74,13 @@ class Triangle:
         print(f"corner 1: {self._corner1}, corner 2: {self._corner2}, corner 3: {self._corner3}")
 
 class Circle:
-    def __init__(self, center= (0,0), radius = 1):
+    def __init__(self, center= (0,0), radius = 1, color = "blue"):
+
         assert isinstance(center, tuple), "center must be a tuple"
         assert len(center) == 2, "center must contain exactly 2 elements"
         assert radius > 0, "radius must be strictley positive"
 
+        self._color = color
         self._center = center
         self._x = center[0]
         self._y = center[1]
@@ -92,6 +97,7 @@ class Circle:
         return math.pi * self._radius**2
     
     def draw(self):
+        t.color(self._color)
         t.up()
         t.goto(self._center)
         t.setheading(0)
@@ -108,9 +114,10 @@ if __name__ == "__main__":
     
     t = Turtle(interactive=False)
 
-    shapes = [Rectangle((10, 10), (20,20)), Rectangle((10,20), (20,30)), Rectangle((20, 40), (30, 50)), Circle(radius=10)]
+    shapes = [Rectangle((-10, -10), (10,10)), Rectangle((10,20), (20,30)), Rectangle((20, 40), (30, 50)), Circle(radius=10)]
     for shape in shapes:    
         shape.info()
         shape.draw()
+        print(shape.area())
     
     plt.show()
