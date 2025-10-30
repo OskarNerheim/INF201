@@ -76,6 +76,8 @@ class Triangle:
     
     def draw(self):
         #find the angles relative to the horizontal line
+        t.color(self._color)
+
         angle12 = math.degrees(math.atan2(self._dy12, self._dx12))
         angle23 = math.degrees(math.atan2(self._dy23, self._dx23))
         angle31 = math.degrees(math.atan2(self._dy31, self._dx31))
