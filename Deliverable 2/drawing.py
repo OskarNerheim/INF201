@@ -27,6 +27,7 @@ class Rectangle:
         #move to lower left corner and draw the rectangle
         t.up()
         t.x, t.y = self._lower_left
+        t.setheading(0)
         t.down()
         for i in range(2):
             t.forward(self._width)
@@ -48,35 +49,56 @@ class Triangle:
         self._corner1 = corner_1
         self._corner2 = corner_2
         self._corner3 = corner_3
+
+        self._dx12 = self._corner2[0] - self._corner1[0]
+        self._dy12 = self._corner2[1] - self._corner1[1]
+        self._length1 = math.sqrt(self._dx12**2 + self._dy12 ** 2)
+
+        self._dx23 = self._corner3[0] - self._corner2[0]
+        self._dy23 = self._corner3[1] - self._corner2[1]
+        self._length2 = math.sqrt(self._dx23**2 + self._dy23 ** 2)
+
+        self._dx31 = self._corner1[0] - self._corner3[0]
+        self._dy31 = self._corner1[1] - self._corner3[1]
+        self._length3 = math.sqrt(self._dx31**2 + self._dy31 ** 2)
     
     def area(self):
-        length1_x = math.abs(self._corner1[0] - self._corner1[0])
-        length1_y = math.abs(self._corner1[1] - self._corner1[1])
-        length1 = math.sqrt(length1_x**2 + length1_y ** 2)
-
-        length2_x = math.abs(self._corner2[0] - self._corner2[0])
-        length2_y = math.abs(self._corner2[1] - self._corner2[1])
-        length2 = math.sqrt(length2_x**2 + length2_y ** 2)
-
-        length3_x = math.abs(self._corner3[0] - self._corner3[0])
-        length3_y = math.abs(self._corner3[1] - self._corner3[1])
-        length3 = math.sqrt(length3_x**2 + length3_y ** 2)
-
-        #Find the area of the triangle using Heron's formula
-        semi_perimeter = (length1 + length2 + length3)/2 
-        area = math.sqrt(semi_perimeter*(semi_perimeter - length1)*(semi_perimeter - length2)*(semi_perimeter - length3))
-        print(area)
+                #Find the area of the triangle using Heron's formula
+        semi_perimeter = (self._length1 + self._length2 + self._length3)/2 
+        area = math.sqrt(semi_perimeter*(semi_perimeter - self._length1)*(semi_perimeter - self._length2)*(semi_perimeter - self._length3))
+        print(f"area of the triangle is: {round(area, 3)}")
     
     def info(self):
         print(f"corner 1: {self._corner1}, corner 2: {self._corner2}, corner 3: {self._corner3}")
+    
+    def draw(self):
+        #find the angles relative to the horizontal line
+        angle12 = math.degrees(math.atan2(self._dy12, self._dx12))
+        angle23 = math.degrees(math.atan2(self._dy23, self._dx23))
+        angle31 = math.degrees(math.atan2(self._dy31, self._dx31))
+        
+        t.up()
+        t.x, t.y = self._corner1
+        t.down()
+
+        t.setheading(angle12)
+        t.forward(self._length1)
+
+        t.setheading(angle23)
+        t.forward(self._length2)
+
+        t.setheading(angle31)
+        t.forward(self._length3)
 
 if __name__ == "__main__":
     
     t = Turtle(interactive=False)
 
     shapes = [Rectangle((10, 10), (20,20)), Rectangle((10,20), (20,30)), Rectangle((20, 40), (30, 50))]
+    shapes.append(Triangle((0, 0), (25, 25), (12, 0)))
     for shape in shapes:    
         shape.info()
+        shape.area()
         shape.draw()
     
     plt.show()
