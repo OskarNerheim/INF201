@@ -19,7 +19,7 @@ class Rectangle:
         assert isinstance(upper_right, tuple), "upper_right must be a tuple"
         assert len(lower_left) == 2, "lower_left must contain exactly 2 elements"
         assert len(upper_right) == 2, "upper_right must contain exactly 2 elements"
-        
+
         self._linewidth = linewidth
         self._color = color
         self._lower_left = lower_left
@@ -28,25 +28,25 @@ class Rectangle:
         self._height = upper_right[1] - lower_left[1]
 
     def info(self):
-        print(f"Upper right: {self._upper_right}, Lower Left: {self._lower_left}")
+        return (f"Upper right: {self._upper_right}, Lower Left: {self._lower_left}, color: {self._color}, linewidth: {self._linewidth}")
         
     def area(self):
         return self._width * self._height
 
-    def draw(self):
-        t.color(self._color)
-        t.width(self._linewidth)
+    def draw(self, turtle):
+        turtle.color(self._color)
+        turtle.width(self._linewidth)
 
         #move to lower left corner and draw the rectangle
-        t.up()
-        t.x, t.y = self._lower_left
-        t.setheading(0)
-        t.down()
+        turtle.up()
+        turtle.x, turtle.y = self._lower_left
+        turtle.setheading(0)
+        turtle.down()
         for i in range(2):
-            t.forward(self._width)
-            t.left(90)
-            t.forward(self._height)
-            t.left(90)
+            turtle.forward(self._width)
+            turtle.left(90)
+            turtle.forward(self._height)
+            turtle.left(90)
 
 
 class Triangle:
@@ -85,9 +85,9 @@ class Triangle:
         return (f"area of the triangle is: {round(area, 3)}")
     
     def info(self):
-        print(f"corner 1: {self._corner1}, corner 2: {self._corner2}, corner 3: {self._corner3}")
+        return (f"corner 1: {self._corner1}, corner 2: {self._corner2}, corner 3: {self._corner3}, color: {self._color}, linewidth: {self._linewidth}")
     
-    def draw(self):
+    def draw(self, turtle):
         #find the angles relative to the horizontal line
         
 
@@ -95,21 +95,21 @@ class Triangle:
         angle23 = math.degrees(math.atan2(self._dy23, self._dx23))
         angle31 = math.degrees(math.atan2(self._dy31, self._dx31))
         
-        t.color(self._color)
-        t.width(self._linewidth)
+        turtle.color(self._color)
+        turtle.width(self._linewidth)
 
-        t.up()
-        t.x, t.y = self._corner1
-        t.down()
+        turtle.up()
+        turtle.x, turtle.y = self._corner1
+        turtle.down()
 
-        t.setheading(angle12)
-        t.forward(self._length1)
+        turtle.setheading(angle12)
+        turtle.forward(self._length1)
 
-        t.setheading(angle23)
-        t.forward(self._length2)
+        turtle.setheading(angle23)
+        turtle.forward(self._length2)
 
-        t.setheading(angle31)
-        t.forward(self._length3)
+        turtle.setheading(angle31)
+        turtle.forward(self._length3)
 
 class Circle:
     def __init__(self, center= (0,0), radius = 1, color = "blue", linewidth=2):
@@ -118,7 +118,8 @@ class Circle:
         assert len(center) == 2, "center must contain exactly 2 elements"
         assert radius > 0, "radius must be strictley positive"
 
-        self._width = linewidth
+
+        self._linewidth = linewidth
         self._color = color
         self._center = center
         self._x = center[0]
@@ -130,39 +131,41 @@ class Circle:
         self._side_length = 2 * self._radius * math.sin(math.pi/self._sides)
     
     def info(self):
-        print(f"Center: {self._center}, radius: {self._radius}")
+        return (f"Center: {self._center}, radius: {self._radius}, color: {self._color}, linewidth: {self._linewidth}")
 
     def area(self):
-        return math.pi * self._radius**2
+        return round(math.pi * self._radius**2, 2)
     
-    def draw(self):
-        t.color(self._color)
-        t.width(self._width)
-        t.up()
-        t.goto(self._center)
-        t.setheading(0)
-        t.forward(self._radius)
-        t.down()
-        t.right(90)
+    def draw(self, turtle):
+        turtle.color(self._color)
+        turtle.width(self._linewidth)
+        turtle.up()
+        turtle.goto(self._center)
+        turtle.setheading(0)
+        turtle.forward(self._radius)
+        turtle.down()
+        turtle.right(90)
         for i in range(self._sides):
-            t.right(self._angle_in_poligon)
-            t.forward(self._side_length)
+            turtle.right(self._angle_in_poligon)
+            turtle.forward(self._side_length)
             
 
 
 if __name__ == "__main__":
-    t = Turtle(interactive=False)
+    tortel = Turtle(interactive=False)
 
     shapes = [  Rectangle((10, 10), (-40,40), linewidth=2, color="green"), 
                 Rectangle((10,20), (20,30), linewidth=4), 
                 Rectangle((20, 40), (30, 50), linewidth=2), 
-                Circle(radius=10, color="orange")]
+                Circle(radius=10, color="orange"),
+                Triangle((0, 0), (25, 25), (12, 0), color="red", linewidth=2),
+                Circle((-40, -30), 20, color="red", linewidth=1),
+                Rectangle((-60, -50), (-20, -10), linewidth=1)
+                ]
     
-    shapes.append(Triangle((0, 0), (25, 25), (12, 0), color="red", linewidth=2))
     for shape in shapes:    
-        shape.info()
-        shape.area()
-        shape.draw()
+        print(shape.info())
         print(shape.area())
+        shape.draw(tortel)
 
     plt.show()
