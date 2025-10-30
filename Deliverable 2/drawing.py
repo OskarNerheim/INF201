@@ -1,6 +1,6 @@
 from turtleplotlib import Turtle
 import matplotlib.pyplot as plt
-import math
+import math as math
 
 class Rectangle:
     """
@@ -48,6 +48,26 @@ class Triangle:
         self._corner1 = corner_1
         self._corner2 = corner_2
         self._corner3 = corner_3
+
+class Circle:
+    def __init__(self, center= (0,0), radius = 1):
+        assert isinstance(center, tuple), "center must be a tuple"
+        assert len(center) == 2, "center must contain exactly 2 elements"
+        assert radius > 0, "radius must be strictley positive"
+        self._center = center
+        self._x = center[0]
+        self._y = center[1]
+        self._radius = radius
+        self._diameter = self._radiusa*2
+    
+    def info(self):
+        print(f"Center: {self._center}, radius: {self._radius}")
+
+    def area(self):
+        return math.pi * self._radius**2
+    
+    def draw(self):
+        
 
 if __name__ == "__main__":
     
