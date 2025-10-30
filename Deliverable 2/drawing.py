@@ -28,7 +28,7 @@ class Circle:
         self._x = center[0]
         self._y = center[1]
         self._radius = radius
-        self._diameter = self._radius*2
+        self._diameter = self._radiusa*2
     
     def info(self):
         print(f"Center: {self._center}, radius: {self._radius}")
