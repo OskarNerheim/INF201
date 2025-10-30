@@ -48,6 +48,27 @@ class Triangle:
         self._corner1 = corner_1
         self._corner2 = corner_2
         self._corner3 = corner_3
+    
+    def area(self):
+        length1_x = math.abs(self._corner1[0] - self._corner1[0])
+        length1_y = math.abs(self._corner1[1] - self._corner1[1])
+        length1 = math.sqrt(length1_x**2 + length1_y ** 2)
+
+        length2_x = math.abs(self._corner2[0] - self._corner2[0])
+        length2_y = math.abs(self._corner2[1] - self._corner2[1])
+        length2 = math.sqrt(length2_x**2 + length2_y ** 2)
+
+        length3_x = math.abs(self._corner3[0] - self._corner3[0])
+        length3_y = math.abs(self._corner3[1] - self._corner3[1])
+        length3 = math.sqrt(length3_x**2 + length3_y ** 2)
+
+        #Find the area of the triangle using Heron's formula
+        semi_perimeter = (length1 + length2 + length3)/2 
+        area = math.sqrt(semi_perimeter*(semi_perimeter - length1)*(semi_perimeter - length2)*(semi_perimeter - length3))
+        print(area)
+    
+    def info(self):
+        print(f"corner 1: {self._corner1}, corner 2: {self._corner2}, corner 3: {self._corner3}")
 
 class Circle:
     def __init__(self, center= (0,0), radius = 1):
