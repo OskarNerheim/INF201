@@ -4,8 +4,6 @@ Oskar Nerheim
 Lasse Lindholm
 """
 
-
-
 from turtleplotlib import Turtle
 import matplotlib.pyplot as plt
 import math as math
