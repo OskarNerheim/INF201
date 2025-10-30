@@ -35,6 +35,9 @@ class Circle:
 
     def area(self):
         return math.pi * self._radius**2
+    
+    def draw(self):
+        
 
 
 
