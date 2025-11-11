@@ -1,3 +1,9 @@
+"""
+Oblig partners:
+Lasse Lindholm
+Oskar Nerheim
+"""
+
 
 class Complex:
     """
