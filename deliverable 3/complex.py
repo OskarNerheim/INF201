@@ -1,21 +1,14 @@
 
 class Complex:
-    """Simple Complex number class supporting basic operations.
-
-    Examples:
-        z = Complex(1, 2)
-        y = Complex(3, 4)
-        print(z)         # 1+2i
-        print([z, y])    # [Complex(1, 2), Complex(3, 4)]
+    """
+    Simple function for complex numbers that support different operations
     """
 
     def __init__(self, a=0, b=0):
-        # allow Complex(5) -> 5+0i
         self.re = a
         self.im = b
 
     def __str__(self):
-        # format real and imaginary parts, handle negative imaginary
         sign = "+" if self.im >= 0 else "-"
         imag_abs = abs(self.im)
         return f"{self.re}{sign}{imag_abs}i"
@@ -31,7 +24,6 @@ class Complex:
         return NotImplemented
 
     def __radd__(self, other):
-        # other + self
         if isinstance(other, (int, float)):
             return Complex(other + self.re, self.im)
         if isinstance(other, Complex):
@@ -46,7 +38,6 @@ class Complex:
         return NotImplemented
 
     def __rsub__(self, other):
-        # other - self
         if isinstance(other, (int, float)):
             return Complex(other - self.re, -self.im)
         if isinstance(other, Complex):
@@ -63,7 +54,6 @@ class Complex:
         return NotImplemented
 
     def __rmul__(self, other):
-        # other * self
         if isinstance(other, (int, float)):
             return Complex(other * self.re, other * self.im)
         if isinstance(other, Complex):
@@ -79,9 +69,6 @@ class Complex:
 
     def __ne__(self, other):
         return not self.__eq__(other)
-
-    # convenience: allow attribute-like access
-    # (re and im are plain attributes already)
 
 z = Complex(1, 2)
 y = Complex(3, 4)
