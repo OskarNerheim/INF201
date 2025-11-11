@@ -1,8 +1,8 @@
 
 class Complex:
     def __init__(self, a=0, b=0):
-        self.a = a
-        self.b = b
+        self.re = a
+        self.im = b
 
     def __str__(self):
         return f"{self.a} + {self.b}i"
@@ -11,9 +11,14 @@ class Complex:
         return f"Complex({self.a}, {self.b})"
 
     def __add__(self, other):
-        new_a = self.a + other.a
-        new_b = self.b + other.b
-        return f"{new_a} + {new_b}i"
+        new_re = self.re + other.re
+        new_im = self.im + other.im
+        return f"{new_re} + {new_im}i"
+
+    def __sub__(self, other):
+        new_re = self.re - other.im
+        new_im = self.re - other.im
+        return f"{new_re} + {new_im}i"
         
 
 z = Complex(1, 2)
