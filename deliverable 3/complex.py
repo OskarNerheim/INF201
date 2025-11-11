@@ -1,39 +1,87 @@
 
 class Complex:
+    """Simple Complex number class supporting basic operations.
+
+    Examples:
+        z = Complex(1, 2)
+        y = Complex(3, 4)
+        print(z)         # 1+2i
+        print([z, y])    # [Complex(1, 2), Complex(3, 4)]
+    """
+
     def __init__(self, a=0, b=0):
+        # allow Complex(5) -> 5+0i
         self.re = a
         self.im = b
 
     def __str__(self):
-        return f"{self.re}+{self.im}i"
-    
+        # format real and imaginary parts, handle negative imaginary
+        sign = "+" if self.im >= 0 else "-"
+        imag_abs = abs(self.im)
+        return f"{self.re}{sign}{imag_abs}i"
+
     def __repr__(self):
         return f"Complex({self.re}, {self.im})"
 
     def __add__(self, other):
+        if isinstance(other, Complex):
+            return Complex(self.re + other.re, self.im + other.im)
         if isinstance(other, (int, float)):
             return Complex(self.re + other, self.im)
-        elif isinstance(other, Complex):
-            return Complex(self.re + other.re, self.im + other.im)
-    
+        return NotImplemented
+
     def __radd__(self, other):
-        self.__add__(other)
+        # other + self
+        if isinstance(other, (int, float)):
+            return Complex(other + self.re, self.im)
+        if isinstance(other, Complex):
+            return Complex(other.re + self.re, other.im + self.im)
+        return NotImplemented
 
     def __sub__(self, other):
-        new_re = self.re - other.re
-        new_im = self.im - other.im
-        return f"{new_re}+{new_im}i"
+        if isinstance(other, Complex):
+            return Complex(self.re - other.re, self.im - other.im)
+        if isinstance(other, (int, float)):
+            return Complex(self.re - other, self.im)
+        return NotImplemented
+
+    def __rsub__(self, other):
+        # other - self
+        if isinstance(other, (int, float)):
+            return Complex(other - self.re, -self.im)
+        if isinstance(other, Complex):
+            return Complex(other.re - self.re, other.im - self.im)
+        return NotImplemented
 
     def __mul__(self, other):
-        new_re = (self.re * other.re) - (self.im * other.im)
-        new_im = (self.re * other.im) + (self.im * other.re)
-        return f"{new_re}+{new_im}i"
+        if isinstance(other, Complex):
+            new_re = (self.re * other.re) - (self.im * other.im)
+            new_im = (self.re * other.im) + (self.im * other.re)
+            return Complex(new_re, new_im)
+        if isinstance(other, (int, float)):
+            return Complex(self.re * other, self.im * other)
+        return NotImplemented
+
+    def __rmul__(self, other):
+        # other * self
+        if isinstance(other, (int, float)):
+            return Complex(other * self.re, other * self.im)
+        if isinstance(other, Complex):
+            new_re = (other.re * self.re) - (other.im * self.im)
+            new_im = (other.re * self.im) + (other.im * self.re)
+            return Complex(new_re, new_im)
+        return NotImplemented
 
     def __eq__(self, other):
-        return ((self.re == other.re) and (self.im == other.im))
+        if not isinstance(other, Complex):
+            return False
+        return (self.re == other.re) and (self.im == other.im)
 
     def __ne__(self, other):
-        return (self.re != other.re) or (self.im != other.im)
+        return not self.__eq__(other)
+
+    # convenience: allow attribute-like access
+    # (re and im are plain attributes already)
 
 z = Complex(1, 2)
 y = Complex(3, 4)
