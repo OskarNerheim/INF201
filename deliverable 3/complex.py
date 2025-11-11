@@ -10,6 +10,11 @@ class Complex:
     def __repr__(self):
         return f"Complex({self.a}, {self.b})"
 
+    def __add__(self, other):
+        new_a = self.a + other.a
+        new_b = self.b + other.b
+        return f"{new_a} + {new_b}i"
+        
 
 z = Complex(1, 2)
 y = Complex(3, 4)
@@ -18,4 +23,6 @@ print(z)
 print([z, y])
 print(Complex())
 print(Complex(5))
+
+print(z + y)
 
