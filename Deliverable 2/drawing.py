@@ -2,6 +2,9 @@
 Deliverable 2 made by:
 Oskar Nerheim
 Lasse Lindholm
+
+The video will be delivered by Oskar
+
 """
 
 from turtleplotlib import Turtle
@@ -152,7 +155,7 @@ class Circle:
 if __name__ == "__main__":
     tortel = Turtle(interactive=False)
 
-    shapes = [  Rectangle((10, 10), (-40,40), linewidth=2, color="green"), 
+    shapes = [  Rectangle((10, 10), (-40,40), color="green"), 
                 Rectangle((10,20), (20,30), linewidth=4), 
                 Rectangle((20, 40), (30, 50), linewidth=2), 
                 Circle(radius=10, color="orange"),
