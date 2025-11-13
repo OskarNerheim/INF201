@@ -21,3 +21,9 @@ Students: Lasse Lindholm and Oskar Nerheim
 For this deliverable we made a rectangle, triangle and a circle class that use the turtle itself as an argument in the draw function and use it to draw the object.
 The info function returns information for the shapes like the circles radius and centre, and the rect/triangles points positions as well as color and linewidth for all.
 the area function returns the calculated area of the shape, the rect uses G*H, triangle uses heron's formula and the circle uses pi * r**2
+
+Deliverable 3:
+Students: Lasse Lindholm and Oskar Nerheim
+For this deliverable we made a complex.py file with a Complex class that allows for the operations, +, -, * and / with complex numbers.
+The python built in complex numbers are formatted slightly diffferenlty so we implemented a "normalize" function to fix the formatting and round floating point errors
+Next we made a test_complex.py file where we run python and our complex numbers and do the same operations and compare the results in a "sleek" table.
