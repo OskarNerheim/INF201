@@ -20,7 +20,6 @@ def normalize(c: str):
             imag = int(imag)
 
         return f"{real}+{imag}i" if imag >= 0 else f"{real}{imag}i"
-    
     return str(c).strip("()").replace('j', 'i')
 
 
@@ -34,40 +33,41 @@ print("-" * col_width*5)
 result_py = z_py + y_py
 result_our = z + y
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
-print(f"{'z + y':>{col_width}}", f"{str(normalize(result_py)):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
+print(f"{'z + y':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
 
 result_py = z_py - y_py
 result_our = z - y
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
-print(f"{'z - y':>{col_width}}", f"{str(normalize(result_py)):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
+print(f"{'z - y':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
 
 result_py = z_py * y_py
 result_our = z * y
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
-print(f"{'z * y':>{col_width}}", f"{str(normalize(result_py)):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
+print(f"{'z * y':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
 
 result_py = z_py + 3
 result_our = z + 3
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
-print(f"{'z + 3':>{col_width}}", f"{str(normalize(result_py)):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
+print(f"{'z + 3':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
 
 result_py = z_py * 3
 result_our = z * 3
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
-print(f"{'z * 3':>{col_width}}", f"{str(normalize(result_py)):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
+print(f"{'z * 3':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
 
 result_py = z_py == 3
 result_our = z == 3
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
-print(f"{'z == y':>{col_width}}", f"{str(normalize(result_py)):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
+print(f"{'z == y':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
 
 result_py = z_py != 3
 result_our = z != 3
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
-print(f"{'z != y':>{col_width}}", f"{str(normalize(result_py)):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
+print(f"{'z != y':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
 
 
 result_py = z_py / y_py
 result_our = z / y
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
+# result_py is normalized because of a floating point error.
 print(f"{'z / y':>{col_width}}", f"{str(normalize(result_py)):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
