@@ -7,8 +7,21 @@ z_py = complex(2, 4) # Complex numbers from python builtin
 y_py = complex(1, 3)
 
 # Function to normalize the pythons built in since it returns with j and parenthesis around
-def normalize(s: str):
-    return str(s).strip("()").replace('j', 'i')
+def normalize(c: str):
+    if isinstance(c, complex): #to round pythons built ins because they have floating point error
+        real = round(c.real, 8)
+        imag = round(c.imag, 8)
+
+        #Turn them back to integers if they can
+        if real == int(real):
+            real = int(real)
+
+        if imag == int(imag):
+            imag = int(imag)
+
+        return f"{real}+{imag}i" if imag >= 0 else f"{real}{imag}i"
+    
+    return str(c).strip("()").replace('j', 'i')
 
 
 # Header
@@ -21,40 +34,40 @@ print("-" * col_width*5)
 result_py = z_py + y_py
 result_our = z + y
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
-print(f"{'z + y':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
+print(f"{'z + y':>{col_width}}", f"{str(normalize(result_py)):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
 
 result_py = z_py - y_py
 result_our = z - y
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
-print(f"{'z - y':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
+print(f"{'z - y':>{col_width}}", f"{str(normalize(result_py)):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
 
 result_py = z_py * y_py
 result_our = z * y
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
-print(f"{'z * y':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
+print(f"{'z * y':>{col_width}}", f"{str(normalize(result_py)):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
 
 result_py = z_py + 3
 result_our = z + 3
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
-print(f"{'z + 3':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
+print(f"{'z + 3':>{col_width}}", f"{str(normalize(result_py)):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
 
 result_py = z_py * 3
 result_our = z * 3
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
-print(f"{'z * 3':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
+print(f"{'z * 3':>{col_width}}", f"{str(normalize(result_py)):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
 
 result_py = z_py == 3
 result_our = z == 3
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
-print(f"{'z == y':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
+print(f"{'z == y':>{col_width}}", f"{str(normalize(result_py)):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
 
 result_py = z_py != 3
 result_our = z != 3
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
-print(f"{'z != y':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
+print(f"{'z != y':>{col_width}}", f"{str(normalize(result_py)):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
 
 
 result_py = z_py / y_py
 result_our = z / y
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
-print(f"{'z / y':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
+print(f"{'z / y':>{col_width}}", f"{str(normalize(result_py)):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
