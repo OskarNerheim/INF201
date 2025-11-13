@@ -2,6 +2,12 @@
 Deliverable 2 made by:
 Oskar Nerheim
 Lasse Lindholm
+<<<<<<< HEAD
+=======
+
+The video will be delivered by Oskar
+
+>>>>>>> d16ebc01d817f9b1cd45a736d3f7e403cdda4bf3
 """
 
 from turtleplotlib import Turtle
@@ -120,7 +126,14 @@ class Circle:
         self._linewidth = linewidth
         self._color = color
         self._center = center
+<<<<<<< HEAD
         self._radius = radius
+=======
+        self._x = center[0]
+        self._y = center[1]
+        self._radius = radius
+        self._diameter = self._radius*2
+>>>>>>> d16ebc01d817f9b1cd45a736d3f7e403cdda4bf3
         self._sides = 360
         self._angle_in_poligon = (self._sides - 2)/self._sides
         self._side_length = 2 * self._radius * math.sin(math.pi/self._sides)
@@ -149,8 +162,12 @@ class Circle:
 if __name__ == "__main__":
     tortel = Turtle(interactive=False)
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     shapes = [  Rectangle((10, 10), (-40,40), linewidth=2, color="green"), 
+=======
+    shapes = [  Rectangle((10, 10), (-40,40), color="green"), 
+>>>>>>> d16ebc01d817f9b1cd45a736d3f7e403cdda4bf3
                 Rectangle((10,20), (20,30), linewidth=4), 
                 Rectangle((20, 40), (30, 50), linewidth=2), 
                 Circle(radius=10, color="orange"),
@@ -158,6 +175,7 @@ if __name__ == "__main__":
                 Circle((-40, -30), 20, color="red", linewidth=1),
                 Rectangle((-60, -50), (-20, -10), linewidth=1)
                 ]
+<<<<<<< HEAD
 =======
     shapes = [Rectangle((10, 10), (20,20)), Rectangle((10,20), (20,30)), Rectangle((20, 40), (30, 50)), Circle(radius=10)]
     shapes.append(Triangle((0, 0), (25, 25), (12, 0), color="red"))
@@ -167,6 +185,8 @@ if __name__ == "__main__":
         shape.draw()
         print(shape.area())
 >>>>>>> Stashed changes
+=======
+>>>>>>> d16ebc01d817f9b1cd45a736d3f7e403cdda4bf3
     
     for shape in shapes:    
         print(shape.info())
