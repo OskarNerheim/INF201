@@ -52,3 +52,9 @@ result_py = z_py != 3
 result_our = z != 3
 match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
 print(f"{'z != y':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
+
+
+result_py = z_py / y_py
+result_our = z / y
+match = "yes" if str(normalize(result_py)) == str(result_our) else "no"
+print(f"{'z / y':>{col_width}}", f"{str(result_py):>{col_width}}", f"{str(result_our):>{col_width}}", f"{str(match):>{col_width}}")
