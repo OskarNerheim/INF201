@@ -73,11 +73,28 @@ class Complex:
 
     def __rmul__(self, other):
         if isinstance(other, (int, float)):
-            return Complex(other * self.re, other * self.im)
-        
+            return (self * other)
+
         if isinstance(other, Complex):
             new_re = (other.re * self.re) - (other.im * self.im)
             new_im = (other.re * self.im) + (other.im * self.re)
+            return Complex(new_re, new_im)
+        return NotImplemented
+    
+    def __truediv__(self, other):
+        if isinstance(other, Complex): 
+            new_re = (self.re * other.re + self.im * other.im) / (other.re**2 + other.im**2)# (ac + bd) / (c2 + d2)
+            new_im = (self.im * other.re - self.re*other.im) / (other.re**2 + other.im**2)# (bc - ad) / (c2 + d2)
+            return Complex(new_re, new_im)
+        return NotImplemented
+    
+    def __rtruediv__(self, other):
+        if isinstance(other, (int, float)):
+            return (self / other)
+        
+        if isinstance(other, Complex):
+            new_re = (self.re * other.re + self.im * other.im) / (other.re**2 + other.im**2)# (ac + bd) / (c2 + d2)
+            new_im = (self.im * other.re - self.re*other.im) / (other.re**2 + other.im**2)# (bc - ad) / (c2 + d2)
             return Complex(new_re, new_im)
         return NotImplemented
 
@@ -90,15 +107,3 @@ class Complex:
 
     def __ne__(self, other):
         return not self.__eq__(other)
-
-z = Complex(1, 2)
-y = Complex(3, 4)
-
-print(z)
-print([z, y])
-print(Complex())
-print(Complex(5))
-
-print(z + y)
-print(y - z)
-print(3 + z)
