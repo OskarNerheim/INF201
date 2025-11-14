@@ -27,3 +27,4 @@ Students: Lasse Lindholm and Oskar Nerheim
 For this deliverable we made a complex.py file with a Complex class that allows for the operations, +, -, * and / with complex numbers.
 The python built in complex numbers are formatted slightly diffferenlty so we implemented a "normalize" function to fix the formatting and round floating point errors
 Next we made a test_complex.py file where we run python and our complex numbers and do the same operations and compare the results in a "sleek" table.
+Lastly we made a jupyter notebook explaining the uses behind the complex number class and shows some examples
